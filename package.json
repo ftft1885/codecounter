@@ -1,0 +1,19 @@
+{
+  "name": "codecounter",
+  "version": "0.0.6",
+  "description": "code counter",
+  "main": "app.js",
+  "bin": {
+    "codecounter": "./bin/codecounter.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "readme": "#CodeCounter\r\n\r\n##Introduction\r\n\r\ncounter code file lines\r\n\r\n##Installation\r\n\r\n\tnpm install codecounter -g\r\n\r\n##How to Use\r\n\r\n\tcodecounter project\r\n\t\r\n\tcodecounter\r\n\r\n\tcodecounter test.c\r\n\t\r\n##Support File Types\t(tell me more)\r\n\t\r\n\t'.c','.cpp','.js','.html','.css','.py'\r\n\t,'.pl','.pm','.md','.markdown'\r\n\t,'.bat','.go','.h','.rb','.java','xhtml','.html','.less','.php','.asp'\r\n\t\r\n##Feature\r\n\t\r\n\tASync and fast\r\n\r\n##Coming soon\r\n\r\n >show result better\r\n\r\n###License\r\n\r\nReleased under the license of MIT, welcome to enjoy open source.\r\n\r\n",
+  "_id": "codecounter@0.0.6",
+  "_from": "codecounter"
+}
