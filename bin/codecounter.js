@@ -54,11 +54,6 @@ function count(dir){
         console.log("file not found");
     }
     else{
-            
-        function Listener(){
-            events.EventEmitter.call(this);
-        }
-        util.inherits(Listener, events.EventEmitter);
 
         function Listener(){
             var self = this;
@@ -73,6 +68,7 @@ function count(dir){
             });    
             return self;
         }
+        util.inherits(Listener, events.EventEmitter);
 
         Listener.prototype.walk = function(mypath){
             var self = this; 
@@ -118,55 +114,55 @@ function count(dir){
         walker.on('end',function(){
 
 
-        //console.log(this.files);
-        var filesToCount = [];
-        this.files.forEach(function(file){
-            var extname = path.extname(file).toLowerCase();
-            
-            if(codefiles.indexOf(extname) !== -1){
-                filesToCount.push(file);
-            }
-        });
-        //console.log(filesToCount);
-
-        var count = filesToCount.length;
-        var result = {};
-
-        filesToCount.forEach(function(file){
-            fs.readFile(file,function(err,data){
-                if(err) console.log(err);
-                else{
-                    var arr = (data+"").split('\n');
-                    var lines = arr.length;
-                    
-                    arr.forEach(function(line){
-                        if(line.trim() === ""){                 
-                            lines --;
-                        }
-                    })
-                    result[file] = lines;
-                    count --;
-                    if(count <= 0){
-                        print();
-                    }
+            //console.log(this.files);
+            var filesToCount = [];
+            this.files.forEach(function(file){
+                var extname = path.extname(file).toLowerCase();
+                
+                if(codefiles.indexOf(extname) !== -1){
+                    filesToCount.push(file);
                 }
             });
-        });
+            //console.log(filesToCount);
 
-        function print(){
-            var sorts = [];
-            var total = 0;
-            for(var key in result){
-                sorts.push(key);
+            var count = filesToCount.length;
+            var result = {};
+
+            filesToCount.forEach(function(file){
+                fs.readFile(file,function(err,data){
+                    if(err) console.log(err);
+                    else{
+                        var arr = (data+"").split('\n');
+                        var lines = arr.length;
+                        
+                        arr.forEach(function(line){
+                            if(line.trim() === ""){                 
+                                lines --;
+                            }
+                        })
+                        result[file] = lines;
+                        count --;
+                        if(count <= 0){
+                            print();
+                        }
+                    }
+                });
+            });
+
+            function print(){
+                var sorts = [];
+                var total = 0;
+                for(var key in result){
+                    sorts.push(key);
+                }
+                sorts.sort(function(a,b){return result[a] - result[b]});
+                sorts.forEach(function(file){
+                    total += result[file];
+                    console.log(file,result[file]);
+                }); 
+                console.log("==================================");
+                console.log("total: "+total+" lines!");
             }
-            sorts.sort(function(a,b){return result[a] - result[b]});
-            sorts.forEach(function(file){
-                total += result[file];
-                console.log(file,result[file]);
-            }); 
-            console.log("==================================");
-            console.log("total: "+total+" lines!");
-        }
             
         });
         walker.walk(dir);
