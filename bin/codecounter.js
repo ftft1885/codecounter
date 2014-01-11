@@ -6,6 +6,13 @@ var path = require('path');
 var util = require('util');
 var events = require('events');
 
+var packageConfig;
+try{
+  packageConfig = JSON.parse(fs.readFileSync(path.join(__dirname,'../package.json')));
+}
+catch(e){
+  packageConfig = {};
+}
 
 var codefiles = [
     '.c','.cpp','.js','.html','.css','.py'
@@ -13,12 +20,12 @@ var codefiles = [
     ,'.bat','.go','.h','.rb','.java','xhtml','.html','.less','.php','.asp'
 ];
 
-//定义参数,以及参数内容的描述  
+//定义参数,以及参数内容的描述
 program
-    .version('1.0');
+    .version(packageConfig.version);
 
 var options = {
-    ext:{short:'e',type:'items',des:'file ext names.'}
+    ext:{short:'e',type:'items',des:'file ext names. separate with comma. eg. js,css,html'}
 };
 for (var name in options) {
     var option = options[name];
