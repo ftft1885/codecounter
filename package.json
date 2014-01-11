@@ -3,6 +3,9 @@
   "version": "0.0.6",
   "description": "code counter",
   "main": "app.js",
+  "dependencies": {
+    "commander": "2.0.0"
+  },
   "bin": {
     "codecounter": "./bin/codecounter.js"
   },
