@@ -15,6 +15,8 @@ counter code file lines
 	codecounter
 
 	codecounter test.c
+
+	codecounter -e js,css,html
 	
 ##Support File Types	(tell me more)
 	
